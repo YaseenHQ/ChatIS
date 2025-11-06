@@ -1,0 +1,11 @@
+#chat_container {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    height: 1em;
+    gap: 1em;
+    justify-content: start;
+}
+
+#chat_container .chat_line {
+    flex-shrink: 0;
+}

@@ -1,0 +1,6 @@
+#chat_container {
+    display: flex;
+    flex-direction: column-reverse;
+    top: 0;
+    bottom: auto;
+}

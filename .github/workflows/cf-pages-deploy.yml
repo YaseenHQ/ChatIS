@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+      - stage
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy to CF Pages
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build a deploy in `dist`
+        run: |
+          mkdir ./dist
+          cp -r -t ./dist  \
+            img/ styles/ favicon.ico index.html script.js  \
+            jquery.min.js purify.min.js
+          mkdir ./dist/v2
+          cp -r -t ./dist/v2/  \
+            v2/badges/ v2/control/ v2/styles/ v2/*.min.js v2/irc-message.js v2/script.js v2/tinycolor.js v2/*.html
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name="ychat" --branch="${{ github.ref_name }}"

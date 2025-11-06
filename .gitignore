@@ -1,0 +1,10 @@
+/.idea
+/.vscode/sftp.json
+
+/v2/credentials.js
+
+.htaccess
+
+# Test files
+test-api.html
+cloudflare-worker-secure.js

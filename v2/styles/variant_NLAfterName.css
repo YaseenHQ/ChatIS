@@ -1,0 +1,4 @@
+.message::before {
+    content: '\A';
+    white-space: pre;
+}

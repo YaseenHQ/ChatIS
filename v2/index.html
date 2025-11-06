@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ChatIS &bull;&nbsp;</title>
+    <link rel="stylesheet" href="styles/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500;600;700;800&family=Comfortaa:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Indie+Flower&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="jquery.min.js"></script>
+    <script src="irc-message.js"></script>
+    <script src="reconnecting-websocket.min.js"></script>
+    <script src="twemoji.min.js"></script>
+    <script src="purify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/planck@latest/dist/planck-with-testbed.min.js"></script>-->
+    <script src='tinycolor.js'></script>
+
+<!--    <script src="script.js"></script>-->
+    <script type="text/javascript">
+        var $script = document.createElement('script');
+        $script.type = 'text/javascript';
+        $script.src = 'script.js?random=' + Math.floor(Math.random() * 1e10);
+        document.head.appendChild($script);
+        console.log("Adding $script element...");
+
+        // $('body').append( $('<span style="font-size: 30px; color: red;">' + navigator.userAgent + '</span>') );
+        // $('body').append( $('<span style="font-size: 30px; color: red;">' + navigator.userAgent + '</span>') );
+        // console.log(navigator.userAgent);
+
+    </script>
+
+
+</head>
+
+<body>
+    <noscript>
+        <div style="background-color: red; color: white; font-size: 2rem; padding: 0.5rem; text-align: center;">
+            You need to turn on JavaScript for this website
+        </div>
+    </noscript>
+    <div id="loader" class="loader" style="position: absolute; z-index: 100; left: calc(50% - 60px); bottom: calc(20% - 60px); border: none;">
+        <img src="../img/Peepo-128x128.png" alt="Loading...">
+    </div>
+    <img id="bg-image" src="" alt="" style="z-index: -100; height: auto; width: 100%; position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 0);">
+    <div id="chat_container"></div>
+</body>
+
+</html>
