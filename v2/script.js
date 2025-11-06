@@ -658,7 +658,15 @@ var Chat = {
                     }
                 } break;
                 case 'cosmetic.update': {
-                    // I'll deal with this later ig bruh
+                    switch (data.body.object.kind) {
+                        case 'PAINT':
+                        case 'BADGE': {
+                            let cosmetic = data.body.object.data;
+                            cosmetic._kind = data.body.object.kind;
+                            Chat.stv.cosmetics.set(data.body.object.id, cosmetic);
+                            console.debug("[ChatIS][7tv] EventAPI cosmetic update:", cosmetic);
+                        } break;
+                    }
                 } break;
                 case 'cosmetic.delete': {
                     switch (data.body.object.kind) {
@@ -691,7 +699,26 @@ var Chat = {
                     }
                 } break;
                 case 'entitlement.update': {
-                    // I'll deal with this later ig bruh
+                    const username = ((data.body.object.user.connections || [])
+                        .find(conn => conn.platform === "TWITCH") || {}).username
+                        || data.body.object.user.username;
+                    switch (data.body.object.kind) {
+                        case 'BADGE':
+                            // Remove old and add updated badge
+                            Chat.stv.removeBadgeFromUserBadges(username, data.body.object.ref_id);
+                            Chat.stv.addBadgeToUserBadges(username, data.body.object.ref_id);
+                            console.debug("[ChatIS][7tv] EventAPI entitlement update BADGE:", username, data.body.object.ref_id);
+                            break;
+                        case 'PAINT':
+                            // Paint already in userCosmetics, just ensure it exists
+                            if (!Chat.stv.userCosmetics.has(username))
+                                Chat.stv.userCosmetics.set(username, []);
+                            if (!Chat.stv.userCosmetics.get(username).includes(data.body.object.ref_id)) {
+                                Chat.stv.userCosmetics.get(username).push(data.body.object.ref_id);
+                            }
+                            console.debug("[ChatIS][7tv] EventAPI entitlement update PAINT:", username, data.body.object.ref_id);
+                            break;
+                    }
                 } break;
                 case 'entitlement.delete': {
                     const username = ((data.body.object.user.connections || [])
