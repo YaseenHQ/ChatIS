@@ -2194,7 +2194,8 @@ var Chat = {
                             if (accessLevel === 700) return;
                         }
                         // let url = 'https://streamlabs.com/polly/speak';
-                        let url = 'https://chatis.is2511.com/v2/tts/';
+                        // let url = 'https://chatis.is2511.com/v2/tts/';
+                        let url = 'https://api.streamelements.com/kappa/v2/speech';
                         let volumeMatch = text.match(/ -v ([\d.]+)/);
                         let volume = parseFloat((volumeMatch || [])[1]) || 0.5;
                         let voiceMatch = text.match(/ -s ([\S]+)/);
@@ -2225,34 +2226,10 @@ var Chat = {
                             let speakUrl = Chat.cache.tts.get(text);
                             speakUsingUrl(speakUrl);
                         } else {
-                            let init = {
-                                method: 'POST',
-                                headers: {'Content-Type': 'application/json;charset=UTF-8'},
-                                mode: 'no-cors',
-                                body: JSON.stringify({
-                                    voice: voice,
-                                    text: text
-                                }),
-                            };
-                            fetch(url, init).then(function (response) {
-                                if (response.status !== 200)
-                                    throw new Error('StreamLabsAPI error: ' + response);
-
-                                return response.json();
-                            }).then((data) => {
-                                // console.log(data);
-                                if (!data.success)
-                                    throw new Error('StreamLabsAPI failed:', data)
-
-                                let responseSpeakUrl = (data || {}).speak_url;
-                                if (responseSpeakUrl) {
-                                    let speakUrl = responseSpeakUrl;
-                                    Chat.cache.tts.set(text, speakUrl);
-                                    speakUsingUrl(speakUrl);
-                                }
-                            }).catch(function (reason) {
-                                throw new Error('TTS error! Reason: ' + reason);
-                            });
+                            // StreamElements API returns direct MP3 URL, not JSON
+                            let speakUrl = `${url}?voice=${encodeURIComponent(voice)}&text=${encodeURIComponent(text)}`;
+                            Chat.cache.tts.set(text, speakUrl);
+                            speakUsingUrl(speakUrl);
                         }
 
                     }
