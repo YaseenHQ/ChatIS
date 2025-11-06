@@ -37,14 +37,16 @@ function sizeUpdate(event) {
 
 function fontUpdate(event) {
     $('link[class="font"]').remove();
-    // $fontCustom.addClass("disabled");
     $example.attr('style', '');
     $fontCustom.attr('disabled', true);
-    // $fontCustom.parent().addClass("hidden");
+    $('#customFontRow').removeClass('visible');
 
     if (Number($font.val()) === 0) {
+        $('#customFontRow').addClass('visible');
         $fontCustom.attr('disabled', false);
-        $example.attr('style', 'font-family:"'+$fontCustom.val()+'"');
+        if ($fontCustom.val()) {
+            $example.attr('style', 'font-family:"'+$fontCustom.val()+'"');
+        }
     } else {
         const font = FuckingSettings.fonts[Number($font.val()) - 1]
 
@@ -239,31 +241,56 @@ function showURL(event) {
 function changePreview(event) {
     if ($example.hasClass("white")) {
         $example.removeClass("white");
-        $brightness.attr('src', "img/light.png");
     } else {
         $example.addClass("white");
-        $brightness.attr('src', "img/dark.png");
     }
 }
 
 function copyUrl(event) {
     navigator.clipboard.writeText($url.val());
 
-    $alert.css('visibility', 'visible');
-    $alert.css('opacity', '1');
+    const $copyBtn = $('#copy-btn');
+    $copyBtn.addClass('copied');
+    
     setTimeout(function() {
-        $alert.css('opacity', '0');
-        setTimeout(function() {
-            $alert.css('visibility', 'hidden');
-        }, 200);
+        $copyBtn.removeClass('copied');
     }, 2000);
 }
 
 function showUrl(event) {
-    $alert.css('opacity', '0');
-    setTimeout(function() {
-        $alert.css('visibility', 'hidden');
-    }, 200);
+    // No longer needed but kept for compatibility
+}
+
+function applyRecommendedSettings(event) {
+    event.preventDefault();
+    
+    // Set fade to on with 30 seconds
+    $fade_bool.prop('checked', true);
+    $fade.val('30');
+    $fade.removeClass('hidden');
+    $fade_seconds.removeClass('hidden');
+    
+    // Set animate to on
+    $animate.prop('checked', true);
+    
+    // Set size to 2 (Medium)
+    $size.val('2');
+    sizeUpdate();
+    
+    // Set font to 5 (Noto Sans)
+    $font.val('5');
+    fontUpdate();
+    
+    // Set stroke to 1 (Thin)
+    $stroke.val('1');
+    strokeUpdate();
+    
+    // Set shadow to 1 (Small)
+    $shadow.val('1');
+    shadowUpdate();
+    
+    // Set bot ignore list to fossabot
+    $botNames.val('fossabot');
 }
 
 function resetForm(event) {
@@ -316,7 +343,8 @@ const $brightness = $("#brightness");
 const $example = $('#example');
 const $result = $("#result");
 const $url = $('#url');
-const $alert = $("#alert");
+const $copyBtn = $('#copy-btn');
+const $recommendedBtn = $('#recommended-settings');
 const $reset = $("#reset");
 
 $fade_bool.change(fadeOption);
@@ -336,7 +364,7 @@ $markdown.change(markdownUpdate);
 $updater.click(updateURL);
 $generator.submit(showURL);
 $brightness.click(changePreview);
-$url.click(copyUrl);
-$alert.click(showUrl);
+$copyBtn.click(copyUrl);
+$recommendedBtn.click(applyRecommendedSettings);
 $reset.click(resetForm);
 
