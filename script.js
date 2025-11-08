@@ -368,3 +368,14 @@ $copyBtn.click(copyUrl);
 $recommendedBtn.click(applyRecommendedSettings);
 $reset.click(resetForm);
 
+// Pause video while scrolling for better performance
+const headerVideo = document.querySelector('.site-header__logo');
+if (headerVideo) {
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        headerVideo.pause();
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => headerVideo.play(), 150);
+    }, { passive: true });
+}
+
