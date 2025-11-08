@@ -250,9 +250,8 @@ h2 {
 }
 
 .recommended-btn {
-    width: 180px;
-    height: 60px;
-    padding: 12px 20px;
+    height: 44px;
+    padding: 0 24px;
     border: 1px solid rgba(139, 92, 246, 0.4);
     border-radius: 12px;
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(167, 139, 250, 0.25) 100%);
@@ -267,31 +266,20 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 8px;
 }
 
-.recommended-btn .btn-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.2;
-}
-
-.recommended-btn .btn-line-1 {
-    font-size: 0.85em;
-    font-weight: 700;
+.recommended-btn span {
+    font-size: 14px;
+    font-weight: 600;
     letter-spacing: 0.02em;
-}
-
-.recommended-btn .btn-line-2 {
-    font-size: 0.85em;
-    font-weight: 500;
-    opacity: 0.9;
 }
 
 .recommended-btn svg {
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    width: 16px;
+    height: 16px;
+    opacity: 0.9;
 }
 
 .recommended-btn:hover {
@@ -697,7 +685,7 @@ input[type="submit"],
 input[type="button"] {
     width: 180px;
     height: 55px;
-    border: 1px solid rgba(14, 165, 233, 0.3);
+    border: 1px solid rgba(14, 165, 233, 0.4);
     border-radius: 12px;
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(59, 130, 246, 0.25) 100%);
     backdrop-filter: blur(5px);
@@ -708,8 +696,11 @@ input[type="button"] {
     font-weight: 600;
     cursor: pointer;
     transition: all .3s ease;
-    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2),
-                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.3),
+                0 0 25px rgba(14, 165, 233, 0.2),
+                0 0 40px rgba(14, 165, 233, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 3px rgba(14, 165, 233, 0.25);
     position: relative;
     overflow: hidden;
 }
@@ -723,26 +714,33 @@ input[type="button"]::before {
     width: 200%;
     height: 200%;
     background: linear-gradient(
-        45deg,
-        transparent 30%,
-        rgba(255, 255, 255, 0.1) 50%,
-        transparent 70%
+        120deg,
+        transparent 0%,
+        transparent 35%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(14, 165, 233, 0.2) 55%,
+        transparent 65%,
+        transparent 100%
     );
-    transform: rotate(45deg);
-    animation: holographic 3s linear infinite;
+    animation: holographic 3.5s ease-in-out infinite;
 }
 
 @keyframes holographic {
     0% {
-        transform: rotate(45deg) translateX(-100%);
+        transform: translateX(-100%) translateY(-100%);
     }
     100% {
-        transform: rotate(45deg) translateX(100%);
+        transform: translateX(100%) translateY(100%);
     }
 }
 
 input[type="submit"]:hover,
 input[type="button"]:hover {
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 6px 16px rgba(14, 165, 233, 0.3),
+                0 0 30px rgba(14, 165, 233, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 2px rgba(14, 165, 233, 0.25);
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.35) 0%, rgba(59, 130, 246, 0.3) 100%);
     border-color: rgba(14, 165, 233, 0.5);
     box-shadow: 0 8px 24px rgba(14, 165, 233, 0.35),
@@ -949,7 +947,7 @@ footer a:hover {
 }
 
 .twitch-logo {
-    max-width: 64px;
+    max-width: 51px;
     height: auto;
     opacity: 0.9;
     transition: all 0.3s ease;
@@ -960,7 +958,7 @@ footer a:hover {
 }
 
 .yaseen-logo {
-    max-width: 240px;
+    max-width: 192px;
     height: auto;
     opacity: 0.9;
     transition: all 0.3s ease;

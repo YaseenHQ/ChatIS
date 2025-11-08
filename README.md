@@ -23,3 +23,5 @@ It comes with many fonts and styling options that can be combined as desired.
 ## Credits
 Based on [**ChatIS** by @IS2511](https://github.com/IS2511/ChatIS-v2), originally forked from [**jChat** by @giambaJ](https://github.com/giambaJ/jChat).
 Completely based on [**CHATIS**](https://chatis.is2511.com/) , just a nicer lookin site.
+
+Icons and illustrations licensed from [Icons8.com](https://icons8.com).

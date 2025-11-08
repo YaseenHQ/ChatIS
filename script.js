@@ -3,7 +3,7 @@ $('#example img').attr('loading', 'lazy');
 
 const FuckingSettings = {
     fonts: [ 'BalooTammudu', 'SegoeUI', 'Roboto', 'Lato', 'NotoSans', 'SourceCodePro',
-        'Impact', 'Comfortaa', 'DancingScript', 'IndieFlower', 'OpenSans', 'AlsinaUltrajada'],
+        'Impact', 'Comfortaa', 'DancingScript', 'IndieFlower', 'Poppins', 'OpenSans', 'AlsinaUltrajada'],
     sizes: ['small', 'medium', 'large'],
     strokes: ['thin', 'medium', 'thick', 'thicker'],
     shadows: ['small', 'medium', 'large'],
@@ -277,12 +277,44 @@ function applyRecommendedSettings(event) {
     $size.val('2');
     sizeUpdate();
     
-    // Set font to 5 (Noto Sans)
-    $font.val('5');
+    // Set font to 11 (Poppins)
+    $font.val('11');
     fontUpdate();
     
     // Set stroke to 1 (Thin)
     $stroke.val('1');
+    strokeUpdate();
+    
+    // Set shadow to 1 (Small)
+    $shadow.val('1');
+    shadowUpdate();
+    
+    // Set bot ignore list to fossabot
+    $botNames.val('fossabot');
+}
+
+function applyRecommendedSettingsSmall(event) {
+    event.preventDefault();
+    
+    // Set fade to on with 30 seconds
+    $fade_bool.prop('checked', true);
+    $fade.val('30');
+    $fade.removeClass('hidden');
+    $fade_seconds.removeClass('hidden');
+    
+    // Set animate to on
+    $animate.prop('checked', true);
+    
+    // Set size to 1 (Small)
+    $size.val('1');
+    sizeUpdate();
+    
+    // Set font to 11 (Poppins)
+    $font.val('11');
+    fontUpdate();
+    
+    // Set stroke to 0 (Off)
+    $stroke.val('0');
     strokeUpdate();
     
     // Set shadow to 1 (Small)
@@ -345,6 +377,7 @@ const $result = $("#result");
 const $url = $('#url');
 const $copyBtn = $('#copy-btn');
 const $recommendedBtn = $('#recommended-settings');
+const $recommendedBtnSmall = $('#recommended-settings-small');
 const $reset = $("#reset");
 
 $fade_bool.change(fadeOption);
@@ -366,6 +399,7 @@ $generator.submit(showURL);
 $brightness.click(changePreview);
 $copyBtn.click(copyUrl);
 $recommendedBtn.click(applyRecommendedSettings);
+$('#recommended-settings-small').click(applyRecommendedSettingsSmall);
 $reset.click(resetForm);
 
 // Pause video while scrolling for better performance
