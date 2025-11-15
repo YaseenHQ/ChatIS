@@ -3,7 +3,7 @@ $('#example img').attr('loading', 'lazy');
 
 const FuckingSettings = {
     fonts: [ 'BalooTammudu', 'SegoeUI', 'Roboto', 'Lato', 'NotoSans', 'SourceCodePro',
-        'Impact', 'Comfortaa', 'DancingScript', 'IndieFlower', 'Poppins', 'OpenSans', 'AlsinaUltrajada'],
+        'Impact', 'Comfortaa', 'DancingScript', 'IndieFlower', 'Poppins', 'OpenSans', 'AlsinaUltrajada', 'LuckiestGuy', 'TikTokSans'],
     sizes: ['small', 'medium', 'large'],
     strokes: ['thin', 'medium', 'thick', 'thicker'],
     shadows: ['small', 'medium', 'large'],
